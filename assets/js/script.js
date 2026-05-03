@@ -169,17 +169,33 @@ function closeLightbox() {
 /* ── Contact form ── */
 const contactForm = document.getElementById('contactForm');
 const formSuccess = document.getElementById('formSuccess');
-contactForm.addEventListener('submit', (e) => {
+contactForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const btn = document.getElementById('submitBtn');
   btn.textContent = 'Sending...';
   btn.disabled = true;
-  setTimeout(() => {
-    formSuccess.style.display = 'block';
-    contactForm.reset();
-    btn.textContent = 'Send Request';
-    btn.disabled = false;
-  }, 1200);
+
+  try {
+    const response = await fetch(contactForm.action, {
+      method: contactForm.method,
+      body: new FormData(contactForm),
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+    
+    if (response.ok) {
+      formSuccess.style.display = 'block';
+      contactForm.reset();
+    } else {
+      alert('Oops! There was a problem submitting your form');
+    }
+  } catch (error) {
+    alert('Oops! There was a problem submitting your form');
+  }
+
+  btn.textContent = 'Send Request';
+  btn.disabled = false;
 });
 
 /* ── Smooth active nav link ── */
