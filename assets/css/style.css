@@ -198,6 +198,8 @@ ul { list-style: none; }
 @media (max-width: 768px) {
   .package-grid { grid-template-columns: 1fr; }
   .careers-content { padding: 40px 20px; }
+  .logo-img { height: 36px; transform: scale(1.1); }
+  .nav-logo { margin-right: auto; }
 }
 
 /* ═══ PROBLEM TIMELINE (Modern Redesign) ═══ */

@@ -121,50 +121,7 @@ function animate() {
 }
 animate();
 
-/* ── Gallery filter tabs ── */
-const tabBtns = document.querySelectorAll('.tab-btn');
-const galleryItems = document.querySelectorAll('.gallery-item');
-
-tabBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    tabBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const filter = btn.dataset.filter;
-    galleryItems.forEach(item => {
-      if (filter === 'all' || item.dataset.cat === filter) {
-        item.classList.remove('hidden');
-      } else {
-        item.classList.add('hidden');
-      }
-    });
-  });
-});
-
-/* ── Lightbox ── */
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightboxImg');
-const lightboxCaption = document.getElementById('lightboxCaption');
-const lightboxClose = document.getElementById('lightboxClose');
-
-galleryItems.forEach(item => {
-  item.addEventListener('click', () => {
-    const img = item.querySelector('img');
-    const caption = item.querySelector('.gallery-overlay span');
-    lightboxImg.src = img.src;
-    lightboxImg.alt = img.alt;
-    lightboxCaption.textContent = caption ? caption.textContent : '';
-    lightbox.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  });
-});
-
-lightboxClose.addEventListener('click', closeLightbox);
-lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
-function closeLightbox() {
-  lightbox.classList.remove('open');
-  document.body.style.overflow = '';
-}
+/* Removed legacy gallery and lightbox code */
 
 /* ── Contact form ── */
 const contactForm = document.getElementById('contactForm');
@@ -194,7 +151,7 @@ contactForm.addEventListener('submit', async (e) => {
     alert('Oops! There was a problem submitting your form');
   }
 
-  btn.textContent = 'Send Request';
+  btn.textContent = 'Send a Message';
   btn.disabled = false;
 });
 
