@@ -12,10 +12,14 @@ window.addEventListener('scroll', () => {
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
 hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('active');
 });
 document.querySelectorAll('.nav-links a').forEach(a => {
-  a.addEventListener('click', () => navLinks.classList.remove('open'));
+  a.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('active');
+  });
 });
 
 /* ── Reveal on scroll ── */
